@@ -46,7 +46,15 @@ impl IDistribution {
   }
 
   pub fn how_many(self: &Self) -> u64 {
-    return 0;
+    return factorial(self.n + self.m - 1) / 
+      (factorial(self.m - 1) * factorial(self.n));
+  }
+}
+
+fn factorial(n: u16) -> u64 {
+  match n {
+    0 => 1,
+    _ => factorial(n - 1) * n as u64
   }
 }
 
