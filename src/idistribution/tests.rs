@@ -61,24 +61,45 @@ mod tests {
   }
 
   #[test]
-  fn set_to_distr() {
+  fn test_sep_to_distr() {
     let sep = vec![0,0];
     let n = 3;
     let res = sep_to_distr(sep, n);
-
     assert_eq!(res, vec![0, 0, 3]);
 
     let sep = vec![1,2];
     let n = 3;
     let res = sep_to_distr(sep, n);
-
     assert_eq!(res, vec![1, 1, 1]);
 
     let sep = vec![0,3,9];
     let n = 10;
     let res = sep_to_distr(sep, n);
-
     assert_eq!(res, vec![0, 3, 6, 1]);
+
+    let sep = vec![0, 0, 2, 5, 7, 7, 7];
+    let n = 7;
+    let res = sep_to_distr(sep, n);
+    assert_eq!(res, vec![0, 0, 2, 3, 2, 0, 0, 0]);
+  }
+
+  #[test]
+  fn test_distr_to_sep() {
+    let distr = vec![0, 0, 3];
+    let res = distr_to_sep(distr);
+    assert_eq!(res, vec![0, 0]);
+
+    let distr = vec![1, 1, 1];
+    let res = distr_to_sep(distr);
+    assert_eq!(res, vec![1, 2]);
+
+    let distr = vec![0, 3, 6, 1];
+    let res = distr_to_sep(distr);
+    assert_eq!(res, vec![0, 3, 9]);
+
+    let distr = vec![0, 0, 2, 3, 2, 0, 0, 0];
+    let res = distr_to_sep(distr);
+    assert_eq!(res, vec![0, 0, 2, 5, 7, 7, 7]);
   }
 
   #[test]

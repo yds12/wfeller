@@ -55,14 +55,14 @@ impl IDistribution {
 }
 
 /// We can think of these distributions of n elements as a sequence of n
-/// elements with m separators inserted between them. For example, two ways
+/// elements with m - 1 separators inserted between them. For example, two ways
 /// of distributing 3 elements in 2 boxes is:
 ///
 /// ,*** (all elements in the second box)
 /// *,** (one element in the first and 2 elements in the second box)
 ///
 /// This function converts a vector with the index of the separators into
-/// a vector of size m - 1 with the number of elements in each box. Parameter
+/// a vector of size m with the number of elements in each box. Parameter
 /// `n` is the total number of elements.
 fn sep_to_distr(sep: Vec<u16>, n: u16) -> Vec<u16> {
   let mut vec = vec![0; sep.len() + 1];
@@ -89,6 +89,11 @@ fn sep_to_distr(sep: Vec<u16>, n: u16) -> Vec<u16> {
   vec[sep.len()] = n - total;
 
   vec
+}
+
+fn distr_to_sep(distr: Vec<u16>) -> Vec<u16> {
+  let mut sep = vec![0; distr.len() - 1];
+  sep
 }
 
 mod tests;
